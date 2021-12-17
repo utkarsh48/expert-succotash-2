@@ -18,7 +18,7 @@ export default function Steps(props) {
         <Step3 enableStep3={enableStep3} onEnableStep3Change={handleEnableStep3Change} availableFields={availableFields} selectedFields={selectedFields} focusedField={focusedField} onFieldFocus={handleFieldFocus} onFieldSelect={handleFieldSelect} onFieldDisselect={handleFieldDisselect} focusedFrom={focusedFrom} />
         <div className='bottom-btns'>
           <div>
-            <button onNext={handleNext} className='btn-pri'>Next</button>
+            <button onClick={handleNext} className='btn-pri'>Next</button>
             <button onClick={handleCancel} className='btn-war'>Cancel</button>
           </div>
         </div>

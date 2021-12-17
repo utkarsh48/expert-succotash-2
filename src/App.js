@@ -51,7 +51,7 @@ class App extends Component{
             continue;
           }
             
-          let temp = {}
+          let temp = {};
           for (let i = 0; i < row.length; i++) {
             temp[headers[i]] = row[i];
           }
@@ -70,7 +70,7 @@ class App extends Component{
       }
 
 
-      this.setState({availableFields: headers, type: fileType});
+      this.setState({content: content, availableFields: headers, type: fileType});
     }
 
   }
@@ -109,12 +109,18 @@ class App extends Component{
 
   handleFieldSelect = (e)=>{
     if(this.state.focusedFrom === "available"){
+      if (new Set(this.state.selectedFields).has(this.state.focusedField)){
+        return;
+      }
       this.setState({selectedFields: [...this.state.selectedFields, this.state.focusedField]});
     }
   }
 
   handleFieldDisselect = (e)=>{
     if(this.state.focusedFrom === "selected"){
+      if (!new Set(this.state.selectedFields).has(this.state.focusedField)){
+        return;
+      }
       this.setState({selectedFields: this.state.selectedFields.filter(field=>field !== this.state.focusedField)});
     }
   }
@@ -129,13 +135,15 @@ class App extends Component{
 
   
   render(){
-    const {type, delimiter, encoding, hasHeaders, enableStep3, availableFields, selectedFields, focusedField, focusedFrom, content} = this.state;
+    const {type, delimiter, encoding, hasHeaders, enableStep3, availableFields, selectedFields, focusedField, focusedFrom, content, showSteps} = this.state;
 
 
     return (
       <main>
-        <Steps type={type} delimiter={delimiter} encoding={encoding} hasHeaders={hasHeaders} enableStep3={enableStep3} availableFields={availableFields} selectedFields={selectedFields} focusedField={focusedField} focusedFrom={focusedFrom} readFile={this.readFile} handleCancel={this.handleCancel} handleDelimiterChange={this.handleDelimiterChange} handleEnableStep3Change={this.handleEnableStep3Change} handleEncodingChange={this.handleEncodingChange} handleFieldDisselect={this.handleFieldDisselect} handleFieldFocus={this.handleFieldFocus} handleFieldSelect={this.handleFieldSelect} handleHasHeadersChange={this.handleHasHeadersChange} handleNext={this.handleNext} handleTypeChange={this.handleTypeChange} />
-        <DataTable headers={selectedFields} data={content} />
+        {showSteps && <Steps type={type} delimiter={delimiter} encoding={encoding} hasHeaders={hasHeaders} enableStep3={enableStep3} availableFields={availableFields} selectedFields={selectedFields} focusedField={focusedField} focusedFrom={focusedFrom} readFile={this.readFile} handleCancel={this.handleCancel} handleDelimiterChange={this.handleDelimiterChange} handleEnableStep3Change={this.handleEnableStep3Change} handleEncodingChange={this.handleEncodingChange} handleFieldDisselect={this.handleFieldDisselect} handleFieldFocus={this.handleFieldFocus} handleFieldSelect={this.handleFieldSelect} handleHasHeadersChange={this.handleHasHeadersChange} handleNext={this.handleNext} handleTypeChange={this.handleTypeChange} />}
+        
+        {!showSteps && 
+          <DataTable headers={selectedFields} data={content} />}
       </main>
     );
   }

@@ -42,3 +42,21 @@ img{
   display: flex;
   justify-content: flex-end;
 }
+
+main{
+  padding: 1rem;
+}
+
+table{
+  border-collapse: collapse;
+  border: 1px solid #bbb;
+  min-width: 100%;
+}
+
+td, th{
+  padding: 0.5rem;
+}
+
+th{
+  text-align: left;
+}
