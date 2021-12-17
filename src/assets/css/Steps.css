@@ -1,8 +1,15 @@
 .steps-container{
+  padding: 0.5rem;
+}
+
+.steps{
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
+.steps-heading{
+  margin: 1rem 0.5rem 0.5rem 0.5rem;
+}
 .step-3{
   grid-column: 1 / -1;
 }
