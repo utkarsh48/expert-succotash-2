@@ -42,18 +42,28 @@ class App extends Component{
       let fileType = "";
       let content = {};
 
-      if(/\.csv$/.test(file.name) && this.state.hasHeaders){
+      if(/\.csv$/.test(file.name)){
         data = data.split("\n");
         for (let i = 0; i < data.length; i++) {
           const row = data[i].split(this.state.delimiter).map(h=>h.trim().replaceAll('"', ""));
-          if(i===0){
-            headers = row;
-            continue;
-          }
-            
           let temp = {};
-          for (let i = 0; i < row.length; i++) {
-            temp[headers[i]] = row[i];
+          
+          if(this.state.hasHeaders){
+            if(i===0){
+              headers = row;
+              continue;
+            }
+            
+            for (let i = 0; i < row.length; i++) {
+              temp[headers[i]] = row[i];
+            }
+          }
+          else {
+            temp = {...row};
+            if(i===0){
+              headers = Object.keys(row);
+              continue;
+            }
           }
           content[i] = temp;
         }
@@ -102,7 +112,8 @@ class App extends Component{
 
   handleEnableStep3Change = (e)=>{
     const s3 = e.currentTarget.checked;
-    this.setState({enableStep3: s3});
+  
+    this.setState({enableStep3: s3, selectedFields: [...this.state.availableFields]});
   }
 
   handleFieldFocus = (e, from)=>{
@@ -141,6 +152,11 @@ class App extends Component{
   }
 
   handleNext = (e)=>{
+    if(this.state.selectedFields.length===0) {
+      alert("Select Fields");
+      return;
+    }
+
     this.setState({showSteps: false});
   }
 

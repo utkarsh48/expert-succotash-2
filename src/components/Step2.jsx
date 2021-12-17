@@ -49,7 +49,7 @@ export default function Step2(props){
             <label className='block'>Has Header</label>
           </div>
           <div>
-            <input name="has-header" checked={hasHeaders} onChange={e=>onHasHeadersChange(e)} type="checkbox" />
+            <input disabled={type==="json"} name="has-header" checked={hasHeaders} onChange={e=>onHasHeadersChange(e)} type="checkbox" />
           </div>
         </div>
       </div>
