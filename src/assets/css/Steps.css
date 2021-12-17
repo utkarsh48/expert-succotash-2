@@ -1,0 +1,14 @@
+.steps-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.step-3{
+  grid-column: 1 / -1;
+}
+
+@media all and (max-width: 1000px){
+  .steps-container{
+    grid-template-columns: 1fr;
+  }
+}
