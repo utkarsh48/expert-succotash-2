@@ -45,7 +45,7 @@ class App extends Component{
       if(/\.csv$/.test(file.name) && this.state.hasHeaders){
         data = data.split("\n");
         for (let i = 0; i < data.length; i++) {
-          const row = data[i].split(this.state.delimiter);
+          const row = data[i].split(this.state.delimiter).map(h=>h.trim().replaceAll('"', ""));
           if(i===0){
             headers = row;
             continue;

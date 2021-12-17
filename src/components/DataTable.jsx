@@ -5,7 +5,7 @@ export default function DataTable(props){
   console.log(data);
 
   return (
-    <table FRAME="VOID" RULES="ALL">
+    <table>
       {headers && headers.length > 0 && 
         <thead>
           <tr>

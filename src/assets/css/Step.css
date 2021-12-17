@@ -87,6 +87,10 @@ select, option {
   width: 6rem;
 }
 
+.field{
+  cursor: pointer;
+}
+
 .field:hover, .field-focused{
   background-color: #dddcdd;
 }
