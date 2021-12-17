@@ -70,6 +70,11 @@ class App extends Component{
       }
 
 
+      if(!this.state.enableStep3){
+        this.setState({content: content, availableFields: headers, selectedFields: headers, type: fileType});
+        return;
+      }
+
       this.setState({content: content, availableFields: headers, type: fileType});
     }
 
@@ -101,6 +106,8 @@ class App extends Component{
   }
 
   handleFieldFocus = (e, from)=>{
+    if(!this.state.enableStep3) return;
+
     if (e.currentTarget === e.target) return;
 
     const field = e.target.innerText;
@@ -108,6 +115,8 @@ class App extends Component{
   }
 
   handleFieldSelect = (e)=>{
+    if(!this.state.enableStep3) return;
+
     if(this.state.focusedFrom === "available"){
       if (new Set(this.state.selectedFields).has(this.state.focusedField)){
         return;
@@ -117,6 +126,8 @@ class App extends Component{
   }
 
   handleFieldDisselect = (e)=>{
+    if(!this.state.enableStep3) return;
+
     if(this.state.focusedFrom === "selected"){
       if (!new Set(this.state.selectedFields).has(this.state.focusedField)){
         return;
