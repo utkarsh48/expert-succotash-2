@@ -12,3 +12,33 @@ img{
 .block{
   display: block;
 }
+
+.btn-pri{
+  background-color: #5cb75b;
+  color: white;
+}
+
+.btn-war{
+  border: 1px solid #bbb;
+  color: #d24;
+  background-color: transparent;
+}
+
+.btn-war, .btn-pri{
+  box-sizing: border-box;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border: 1px solid transparent;
+  outline: none;
+}
+
+.btn-war:hover, .btn-pri:hover{
+  box-sizing: border-box;
+  border: 1px solid #bbb;
+}
+
+.bottom-btns{
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+}

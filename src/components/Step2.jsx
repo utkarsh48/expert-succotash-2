@@ -15,9 +15,9 @@ export default function Step2(props){
             <label className='block'>File Type</label>
           </div>
           <div>
-            <select name="f-type" onChange={e=>onTypeChange(e)} type={type}>
-              <option value="text/csv">CSV</option>
-              <option value="application/json">JSON</option>
+            <select name="f-type" onChange={e=>onTypeChange(e)} value={type}>
+              <option value="csv">CSV</option>
+              <option value="json">JSON</option>
             </select>
           </div>
         </div>

@@ -3,7 +3,9 @@ import "../assets/css/Step.css";
 
 
 export default function Step3(props){
-  const {enableStep3, onEnableStep3Change, availableFields, selectedFields, focusedField, onFieldSelect, onFieldDisselect, onFieldFocus} = props;
+  const {enableStep3, onEnableStep3Change, availableFields, selectedFields, focusedField, onFieldSelect, onFieldDisselect, onFieldFocus, focusedFrom} = props;
+
+  const available = "available", selected = "selected";
 
   return (
     <div className='step-3 step-container step-shadow'>
@@ -17,8 +19,8 @@ export default function Step3(props){
           <div className='field-selector'>
             <div className='fields-container'>
               <span className="block fields-container-heading">Available Fields</span>
-              <div className="fields" onClick={e=>onFieldFocus(e, "available")}>
-                {availableFields && availableFields.map(field=><div className={`field ${focusedField ? "field-focused" : ""}`}>{field}</div>)}
+              <div className="fields" onClick={e=>onFieldFocus(e, available)}>
+                {availableFields && availableFields.map(field=><div key={field} className={`field ${available === focusedFrom && focusedField===field ? "field-focused" : ""}`}>{field}</div>)}
               </div>
             </div>
             <div className='field-selector-button-container'>
@@ -27,8 +29,8 @@ export default function Step3(props){
             </div>
             <div className='fields-container'>
               <span className="block fields-container-heading">Fields to be Displayed</span>
-              <div className="fields" onClick={e=>onFieldFocus(e, "selected")}>
-                {selectedFields && selectedFields.map(field=><div className={`field ${focusedField ? "field-focused" : ""}`}>{field}</div>)}
+              <div className="fields" onClick={e=>onFieldFocus(e, selected)}>
+                {selectedFields && selectedFields.map(field=><div key={field} className={`field ${selected === focusedFrom && focusedField===field ? "field-focused" : ""}`}>{field}</div>)}
               </div>
             </div>
           </div>
